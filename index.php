@@ -65,7 +65,7 @@ header("Content-type: ${chosen_mime_type}");
 header("Content-location: ${content_location}");
 
 $graph_to_serve = $complete_graph->get_subject_subgraph($requested_uri);
-$graph_to_serve->set_namespace_mapping('recipe', 'http://linkedrecipes.org/schema');
+$graph_to_serve->set_namespace_mapping('recipe', 'http://linkedrecipes.org/schema/');
 $graph_to_serve->set_namespace_mapping('cc', 'http://web.resource.org/cc/');
 switch ($chosen_mime_type) {
 	case 'application/rdf+xml':
