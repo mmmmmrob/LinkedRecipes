@@ -50,7 +50,7 @@ recipe:Recipe a rdfs:Class ;
 recipe:Method a rdfs:Class ;
 	rdfs:isDefinedBy <http://linkedrecipes.org/schema> ;
 	rdfs:label "Method" ;
-	rdfs:comment "A method is a sequence (rdf:Seq) of steps (recipe:Step) that are performed in order, using the tools (recipe:Tool), techniques (recipe:Technique) and ingredients (recipe:Ingredient) in order to produce a food (recipe:Food) or dish (recipe:Dish)."
+	rdfs:comment "A method is a sequence (rdf:Seq) of steps (recipe:Step) that are performed in order, using the tools (recipe:Tool), techniques (recipe:Technique) and ingredients (recipe:Ingredient) in order to produce a food (recipe:Food) or dish (recipe:Dish)." .
 
 recipe:Step a rdfs:Class ;
 	rdfs:isDefinedBy <http://linkedrecipes.org/schema> ;
