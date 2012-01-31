@@ -1,8 +1,7 @@
 <?php
 $preferred_languages = sort_accept_values($_SERVER["HTTP_ACCEPT_LANGUAGE"]);
 $preferred_languages[] = null;
-$complete_graph->set_namespace_mapping('measure', 'http://kilosandcups.info/schema/');
-$home_title = $complete_graph->get_first_literal('http://kilosandcups.info/', RDFS_LABEL, null, $preferred_languages );
+$complete_graph->set_namespace_mapping('recipe', 'http://linkedrecipes.org/schema');
 $title = $complete_graph->get_first_literal($requested_uri, RDFS_LABEL, null, $preferred_languages );
 $description = $complete_graph->get_first_literal($requested_uri, RDFS_COMMENT, null, $preferred_languages );
 ?><!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
@@ -15,13 +14,11 @@ $description = $complete_graph->get_first_literal($requested_uri, RDFS_COMMENT, 
 	<body>
 		<div class="container">
 			<div class="header">
-				<a href="/"><?php echo htmlentities($home_title); ?></a>
+				<h1><?php echo htmlentities($title) ?></h1>
 			</div>
 			<div class="content">
-				<h1><?php echo htmlentities($title) ?></h1>
 				<p><?php echo htmlentities($description) ?></p>
 				<?php
-				if ($is_home_request) { require_once 'home_content.php'; }
 				if ($is_ontology_request) { require_once 'ontology_content.php'; }
 				?>
 			</div>

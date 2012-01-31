@@ -18,6 +18,8 @@
 <http://linkedrecipes.org/schema>
 	dc:title "Linked Recipe Schema"@en ;
 	rdfs:comment "The Linked Recipe schema is intended to support the expression of recipes using RDF technology. The schema has been designed with an emphasis on ensuring that existing sources of recipes may be easily converted to this format. The structure of the schema also allows for richer modelling and annotations, as well as exploring the merging of recipe data with other information such as nutrition data, carbon footprint data, calorie counting and so on." ;
+	vann:preferredNamespacePrefix "recipe" ;
+	vann:preferredNamespaceUri <http://linekdrecipes.org/schema> ;
 	foaf:maker
 		<http://www.ldodds.com#me> ,
 		recipe:paolo ,

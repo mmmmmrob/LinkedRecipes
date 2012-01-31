@@ -14,6 +14,7 @@ function sort_accept_values($header_list) {
 	return array_keys($values);
 }
 
+//redirect / to /schema
 $requested_uri = 'http://linkedrecipes.org'.$_SERVER['REQUEST_URI'];
 if ($requested_uri == 'http://linkedrecipes.org/') {
 	header("HTTP/1.1 303 See Other");
@@ -46,19 +47,15 @@ $turtle = file_get_contents($turtle_path);
 $complete_graph = new SimpleGraph();
 $complete_graph->from_turtle($turtle);
 preg_match_all('%/[^/]+%', $_SERVER['REQUEST_URI'], $request_parts);
-list($ontology_part, $datatype_part, $value_part) = $request_parts[0];
-$is_home_request = $requested_uri == 'http://http://linkedrecipes.org/schema';
-$is_ontology_request = isset($ontology_part) && !isset($datatype_part) ? true : false ;
-$is_datatype_request = isset($datatype_part) && !isset($value_part) ? true : false ;
-$is_value_request = isset($value_part) ? true : false ;
-$ontology_uri = isset($ontology_part) ? 'http://kilosandcups.info'.$ontology_part : null ;
-$datatype_uri = isset($datatype_part) ? $ontology_uri.$datatype_part : null ;
-$value_uri = isset($value_part) ? $datatype_uri.$value_part : null ;
+list($ontology_part, $property_or_class_part, $value_part) = $request_parts[0];
+$is_ontology_request = isset($ontology_part) && !isset($property_or_class_part) ? true : false ;
+$is_property_or_class_request = isset($property_or_class_part) && !isset($value_part) ? true : false ;
+$ontology_uri = isset($ontology_part) ? 'http://linkedrecipes.org'.$ontology_part : null ;
+$property_or_class_uri = isset($property_or_class_part) ? $ontology_uri.$property_or_class_part : null ;
 
-if ($is_value_request) { require_once 'errors/404NotFound.php'; exit; } //not done conversions yet
-if (!$is_home_request && !$complete_graph->has_triples_about($ontology_uri)) { require_once 'errors/404NotFound.php'; exit; }
-if (!$is_home_request && !$is_ontology_request && !$complete_graph->has_triples_about($datatype_uri)) { require_once 'errors/404NotFound.php'; exit; }
-if ($is_datatype_request && $chosen_mime_type == 'text/html') { header('Location: '.$ontology_uri.preg_replace('%/%', '#', $datatype_part)); exit; }
+if (!$complete_graph->has_triples_about($ontology_uri)) { require_once 'errors/404NotFound.php'; exit; }
+if (!$is_ontology_request && !$complete_graph->has_triples_about($property_or_class_uri)) { require_once 'errors/404NotFound.php'; exit; }
+if ($is_property_or_class_request && $chosen_mime_type == 'text/html') { header('Location: '.$ontology_uri.preg_replace('%/%', '#', $property_or_class_part)); exit; }
 
 $content_location = $requested_uri;
 $content_location .= preg_match('%/$%', $requested_uri) ? 'index' : '';
@@ -68,7 +65,7 @@ header("Content-type: ${chosen_mime_type}");
 header("Content-location: ${content_location}");
 
 $graph_to_serve = $complete_graph->get_subject_subgraph($requested_uri);
-$graph_to_serve->set_namespace_mapping('lr', 'http://linkedrecipes.org/schema');
+$graph_to_serve->set_namespace_mapping('recipe', 'http://linkedrecipes.org/schema');
 $graph_to_serve->set_namespace_mapping('cc', 'http://web.resource.org/cc/');
 switch ($chosen_mime_type) {
 	case 'application/rdf+xml':
