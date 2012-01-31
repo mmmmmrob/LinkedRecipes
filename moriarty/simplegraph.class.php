@@ -719,7 +719,7 @@ class SimpleGraph {
    * @return boolean true if a matching type statement exists, false otherwise
    */
 	function resource_is_of_type($s, $t) {
-		return has_resource_triple($s, $this->_ns['rdf'].'type', $t);
+		return $this->has_resource_triple($s, $this->_ns['rdf'].'type', $t);
 	}
 
   /**
