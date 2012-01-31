@@ -17,6 +17,7 @@
 
 <http://linkedrecipes.org/schema>
 	dc:title "Linked Recipe Schema"@en ;
+	rdfs:label "Linked Recipe Schema"@en ;
 	rdfs:comment "The Linked Recipe schema is intended to support the expression of recipes using RDF technology. The schema has been designed with an emphasis on ensuring that existing sources of recipes may be easily converted to this format. The structure of the schema also allows for richer modelling and annotations, as well as exploring the merging of recipe data with other information such as nutrition data, carbon footprint data, calorie counting and so on." ;
 	vann:preferredNamespacePrefix "recipe" ;
 	vann:preferredNamespaceUri <http://linekdrecipes.org/schema> ;
@@ -25,7 +26,8 @@
 		recipe:paolo ,
 		recipe:rob ,
 		<http://davide.eynard.it/rdf/foaf.rdf#me> ;
-	dc:created "2009-09-11"^^xsd:date .
+	dc:created "2009-09-11"^^xsd:date ;
+	ov:defines recipe:Recipe, recipe:Method, recipe:Step, recipe:Tool, recipe:Technique, recipe:IngredientList, recipe:Ingredient, recipe:Food, recipe:Dish, recipe:Season, recipe:Occasion, recipe:Diet, recipe:Cuisine, recipe:Course, recipe:Menu, recipe:Spring, recipe:Summer, recipe:Autumn, recipe:Winter, recipe:ingredients, recipe:ingredient, recipe:ingredient_of, recipe:required_tool, recipe:required_technique, recipe:goes_well_with, recipe:method, recipe:serves, recipe:at_its_best, recipe:cuisine, recipe:diet, recipe:course, recipe:quantity, recipe:cooking_time, recipe:preparation_time, recipe:total_time, recipe:produces .
 
 <http://www.ldodds.com#me> a foaf:Person ;
 	foaf:name "Leigh Dodds" .
@@ -41,62 +43,77 @@ recipe:rob a foaf:Person ;
 ############################################################################
 
 recipe:Recipe a rdfs:Class ;
+	rdfs:isDefinedBy <http://linkedrecipes.org/schema> ;
 	rdfs:label "Recipe" ;
 	rdfs:comment "A recipe is the combination of a set of ingredients (recipe:IngredientList) and a method (recipe:Method) used to produce a dish (recipe:Dish) or food (recipe:Food)." .
 
 recipe:Method a rdfs:Class ;
+	rdfs:isDefinedBy <http://linkedrecipes.org/schema> ;
 	rdfs:label "Method" ;
 	rdfs:comment "A method is a sequence (rdf:Seq) of steps (recipe:Step) that are performed in order, using the tools (recipe:Tool), techniques (recipe:Technique) and ingredients (recipe:Ingredient) in order to produce a food (recipe:Food) or dish (recipe:Dish)."
 
 recipe:Step a rdfs:Class ;
+	rdfs:isDefinedBy <http://linkedrecipes.org/schema> ;
 	rdfs:label "Step" ;
 	rdfs:comment "a step or instruction in a recipe" .
 
 recipe:Tool a rdfs:Class ;
+	rdfs:isDefinedBy <http://linkedrecipes.org/schema> ;
 	rdfs:label "Tool" ;
 	rdfs:comment "A tool is a piece of equipment used in the preparation of a recipe (recipe:Recipe)." .
 
 recipe:Technique a rdfs:Class ;
+	rdfs:isDefinedBy <http://linkedrecipes.org/schema> ;
 	rdfs:label "Technique" ;
 	rdfs:comment "A technique is a specific way of preparing something and is used in the preparation of a recipe (recipe:Recipe)." .
 
 recipe:IngredientList a rdfs:Class ;
+	rdfs:isDefinedBy <http://linkedrecipes.org/schema> ;
 	rdfs:label "Ingredients" ;
 	rdfs:comment "An ingredient list as a sequence (rdf:Seq) of ingredients (recipe:Ingredient) used in the preparation of a recipe (recipe:Recipe)." .
 
 recipe:Ingredient a rdfs:Class ;
+	rdfs:isDefinedBy <http://linkedrecipes.org/schema> ;
 	rdfs:label "Ingredient" ;
 	rdfs:comment "An ingredient is a specific amount of a food (recipe:Food) that is used as part of a recipe (recipe:Recipe)." .
 
 recipe:Food a rdfs:Class ;
+	rdfs:isDefinedBy <http://linkedrecipes.org/schema> ;
 	rdfs:label "Food" ;
 	rdfs:comment "A food is something that people eat and that may be used as an ingredient (recipe:Ingredient) in a recipe (recipe:Recipe). It may be a simple food, such as salt or pepper, or it may be a more complex food such as meringue or sweet & sour sauce." .
 
 recipe:Dish a rdfs:Class ;
+	rdfs:isDefinedBy <http://linkedrecipes.org/schema> ;
 	rdfs:label "Dish" ;
 	rdfs:comment "A dish is a product of a recipe that would be served for a course (recipe:Course). Dishes are also foods (recipe:Food) but not all foods are dishes. Lamb Casserole would be considered a dish, as might Roast Chicken, whereas Cranberry Sauce or Marmalade would not." .
 
 recipe:Season a rdfs:Class ;
+	rdfs:isDefinedBy <http://linkedrecipes.org/schema> ;
 	rdfs:label "Season" ;
 	rdfs:comment "A season is a recurring period in time that is relevant top the availability of a food (recipe:Food) or the suitability of a recipe (recipe:Recipe). Linked Recipes lists four seasons, Spring (recipe:Spring), Summer (recipe:Summer), Autumn (recipe:Autumn) and Winter (recipe:Winter). These seasons obviously differ in when the occur depending on your locale." .
 	
 recipe:Occasion a rdfs:Class ;
+	rdfs:isDefinedBy <http://linkedrecipes.org/schema> ;
 	rdfs:label "Occasion" ;
 	rdfs:comment "An occasion is an event where people come together to meet and enjoy company. Occasions are used in Linked Recipes to allow recipes to be categorised as suitable for, or relevant to, particular occasions." .
 
 recipe:Diet a rdfs:Class ;
+	rdfs:isDefinedBy <http://linkedrecipes.org/schema> ;
 	rdfs:label "Diet" ;
 	rdfs:comment "A diet is a way of eating that attempts to balance the food eaten to reduce a food type, as in the case of a low-carb diet or a dairy-free diet, or in favour of a food type as in the case of a high-protein diet. Diets are used in Linked Recipes to categorise recipes that may be suitable for people following a particular diet." .
 
 recipe:Cuisine a rdfs:Class ;
+	rdfs:isDefinedBy <http://linkedrecipes.org/schema> ;
 	rdfs:label "Cuisine" ;
 	rdfs:comment "A cuisine is a style of cooking that is associated with a particular geographic area. Cuisines are used in Linked Recipes to categorise recipes that may appeal to be people who like that cuisine." .
 
 recipe:Course a rdfs:Class ;
+	rdfs:isDefinedBy <http://linkedrecipes.org/schema> ;
 	rdfs:label "Course" ;
 	rdfs:comment "A course is a stage in a meal during which a particular style of dish may be served." .
 
 recipe:Menu a rdfs:Class ;
+	rdfs:isDefinedBy <http://linkedrecipes.org/schema> ;
 	rdfs:label "Menu" ;
 	rdfs:comment "A menu is a collection of recipes (recipe:Recipe), or dishes (recipe:Dish) that go well together to provide a meal." .
 
@@ -105,15 +122,19 @@ recipe:Menu a rdfs:Class ;
 ############################################################################
 
 recipe:Spring a recipe:Season ;
+	rdfs:isDefinedBy <http://linkedrecipes.org/schema> ;
 	rdfs:label "Spring" .
 
 recipe:Summer a recipe:Season ;
+	rdfs:isDefinedBy <http://linkedrecipes.org/schema> ;
 	rdfs:label "Summer" .
 
 recipe:Autumn a recipe:Season ;
+	rdfs:isDefinedBy <http://linkedrecipes.org/schema> ;
 	rdfs:label "Autumn" .
 
 recipe:Winter a recipe:Season ;
+	rdfs:isDefinedBy <http://linkedrecipes.org/schema> ;
 	rdfs:label "Winter" .
 
 ############################################################################
@@ -121,100 +142,117 @@ recipe:Winter a recipe:Season ;
 ############################################################################
 
 recipe:ingredients a rdf:Property ;
+	rdfs:isDefinedBy <http://linkedrecipes.org/schema> ;
 	rdfs:label "ingredients" ;
 	rdfs:comment "Relates a recipe to the list of ingredients (recipe:IngredientList)." ;
 	rdfs:domain recipe:Recipe ;
 	rdfs:range recipe:IngredientList .
 
 recipe:ingredient a rdf:Property ;
+	rdfs:isDefinedBy <http://linkedrecipes.org/schema> ;
 	rdfs:label "ingredient" ;
 	rdfs:comment "Links a recipe directly to each of the ingredients (recipe:Ingredient). This is used in addition to a sequenced ingredient list (recipe:IngredientList)." ;
 	rdfs:domain recipe:Recipe ;
 	rdfs:range recipe:Ingredient .
 
 recipe:ingredient_of a rdf:Property ;
+	rdfs:isDefinedBy <http://linkedrecipes.org/schema> ;
 	rdfs:label "ingredient of" ;
 	rdfs:comment "Connects a food (recipe:Food) back to a recipe (recipe:Recipe) in which it is used." ;
 	rdfs:domain recipe:Food ;
 	rdfs:range recipe:Recipe .
 
 recipe:required_tool a rdf:Property ;
+	rdfs:isDefinedBy <http://linkedrecipes.org/schema> ;
 	rdfs:label "required tool" ;
 	rdfs:comment "Links a recipe (recipe:Recipe) or step (recipe:Step) with a tool (recipe:Tool) that is required to complete the preparation." ;
 	rdfs:range recipe:Tool .
 
 recipe:required_technique a rdf:Property ;
+	rdfs:isDefinedBy <http://linkedrecipes.org/schema> ;
 	rdfs:label "required technique" ;
 	rdfs:comment "Links a recipe (recipe:Recipe) or step (recipe:Step) with a technique (recipe:Technique) that is required to complete the preparation." ;
 	rdfs:range recipe:Technique .
 
 recipe:goes_well_with a rdf:Property ;
+	rdfs:isDefinedBy <http://linkedrecipes.org/schema> ;
 	rdfs:label "goes well with" ;
 	rdfs:comment "Allows to foods (recipe:Food) to be related due their regular co-occurence." ;
 	rdfs:range recipe:Food ;
 	rdfs:domain recipe:Food .
 
 recipe:method a rdf:Property ;
+	rdfs:isDefinedBy <http://linkedrecipes.org/schema> ;
 	rdfs:label "method" ;
 	rdfs:comment "Connects a recipe (recipe:Recipe) with a method, a sequence of steps, (recipe:Method) that is used to produce it." ;
 	rdfs:domain recipe:Recipe ;
 	rdfs:range recipe:Method .
 
 recipe:serves a rdf:Property ;
+	rdfs:isDefinedBy <http://linkedrecipes.org/schema> ;
 	rdfs:label "serves" ;
 	rdfs:comment "Indicates the number of people the recipe is intended to serve." ;
 	rdfs:domain recipe:Recipe ;
 	rdfs:range xsd:positiveInteger .
 
 recipe:at_its_best a rdf:Property ;
+	rdfs:isDefinedBy <http://linkedrecipes.org/schema> ;
 	rdfs:label "at it best in" ;
 	rdfs:comment "Relates a food (recipe:Food) to a season in which it is at its best." ;
 	rdfs:domain recipe:Food ;
 	rdfs:range recipe:Season .
 
-recipe:cuisine a rdf:Property .
+recipe:cuisine a rdf:Property ;
+	rdfs:isDefinedBy <http://linkedrecipes.org/schema> ;
 	rdfs:label "cuisine" ;
 	rdfs:comment "Links a recipe (recipe:Recipe) to the style of cuisine (recipe:Cuisine) that it come from." ;
 	rdfs:domain recipe:Recipe ;
 	rdfs:range recipe:Cuisine .
 
-recipe:diet a rdf:Property .
+recipe:diet a rdf:Property ;
+	rdfs:isDefinedBy <http://linkedrecipes.org/schema> ;
 	rdfs:label "diet" ;
 	rdfs:comment "Relates a recipe (recipe:Recipe) to a diet that it may be suitable for." ;
 	rdfs:domain recipe:Recipe ;
 	rdfs:range recipe:Diet .
 
-recipe:course a rdf:Property .
+recipe:course a rdf:Property ;
+	rdfs:isDefinedBy <http://linkedrecipes.org/schema> ;
 	rdfs:label "course" ;
 	rdfs:comment "Links a recipe (recipe:Recipe) to the course (recipe:Course) in a meal for which it was intended to be served." ;
 	rdfs:domain recipe:Recipe ;
 	rdfs:range recipe:Course .
 
 recipe:quantity a rdf:Property ;
+	rdfs:isDefinedBy <http://linkedrecipes.org/schema> ;
 	rdfs:label "quantity" ;
 	rdfs:comment "The quantity of an ingredient, consider typing this using http://kilosandcups.info/" ;
 	rdfs:domain recipe:Ingredient ;
 	rdfs:range rdfs:Literal .
 
 recipe:cooking_time a rdf:Property ;
+	rdfs:isDefinedBy <http://linkedrecipes.org/schema> ;
 	rdfs:label "cooking time" ;
 	rdfs:comment "The length of time taken for the recipe to cook represented as an XSD duration." ;
 	rdfs:domain recipe:Recipe ;
 	rdfs:range xsd:duration .
 
 recipe:preparation_time a rdf:Property ;
+	rdfs:isDefinedBy <http://linkedrecipes.org/schema> ;
 	rdfs:label "preparation time" ;
 	rdfs:comment "The length of time taken to prepare the recipe represented as an XSD duration." ;
 	rdfs:domain recipe:Recipe ;
 	rdfs:range xsd:duration .
 
 recipe:total_time a rdf:Property ;
+	rdfs:isDefinedBy <http://linkedrecipes.org/schema> ;
 	rdfs:label "time" ;
 	rdfs:comment "The length of time taken to prepare and cook the recipe represented as an XSD duration. This is typically used instead of preparation and cooking time where the data is not available to support distinct time statements." ;
 	rdfs:domain recipe:Recipe ;
 	rdfs:range xsd:duration .
 
 recipe:produces a rdf:Property ;
+	rdfs:isDefinedBy <http://linkedrecipes.org/schema> ;
 	rdfs:label "produces" ;
 	rdfs:comment "Indicates the food (recipe:Food) or dish (recipe:Dish) that a recipe (recipe:Recipe) produces." ;
 	rdfs:domain recipe:Recipe .
