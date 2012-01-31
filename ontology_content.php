@@ -18,6 +18,9 @@ foreach ($groups as $group_label => $group_type) {
 	echo "<h2>${group_label}</h2>\n";
 	echo "<ol>\n";
 	foreach ($defines as $defined) {
+		if (!$complete_graph->resource_is_of_type($defined, $group_type)) {
+			continue;
+		}
 		$anchor = end(explode("/", $defined));
 		echo "\t<li class=\"datatype\">";
 		echo "<a name=\"${anchor}\"></a>";
